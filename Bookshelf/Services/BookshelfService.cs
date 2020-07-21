@@ -16,11 +16,11 @@ namespace Bookshelf.Services
             _repository = repository;
         }
 
-        public bool AddBook(Book book) 
+        public Book AddBook(Book book) 
         {
             book.Id = "1";
             _repository.AddABook(book);
-            return true;
+            return book;
         }
     }
 }
