@@ -16,18 +16,22 @@ namespace Bookshelf.AcceptanceTest
         [SetUp]
         public void Setup()
         {
-            IBookshelfRepository repository = new BookshelfRepository();
-            BookshelfService service = new BookshelfService(repository);
+            repository = new BookshelfRepository();
+            service = new BookshelfService(repository);
         }
 
         [Test]
         public void CreateABook()
         {
             BookshelfController controller = new BookshelfController(service);
-            Book book = new Book();
+            Book book = new Book("Il signore degli anelli", "Tolkien");
             ActionResult<Book> actionResult = controller.Create(book);
 
             Assert.That(actionResult, Is.InstanceOf<ActionResult<Book>>());
+            Assert.That(actionResult.Value, Is.Not.Null);
+            Assert.That(actionResult.Value.Title, Is.EqualTo("Il signore degli anelli"));
+            Assert.That(actionResult.Value.Author, Is.EqualTo("Tolkien"));
+            Assert.That(actionResult.Value.Id, Is.Not.Null);
         }
     }
 }

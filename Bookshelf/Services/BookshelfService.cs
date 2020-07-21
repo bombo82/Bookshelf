@@ -18,6 +18,7 @@ namespace Bookshelf.Services
 
         public bool AddBook(Book book) 
         {
+            book.Id = "1";
             _repository.AddABook(book);
             return true;
         }

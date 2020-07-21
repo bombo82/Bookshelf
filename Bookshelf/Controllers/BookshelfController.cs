@@ -33,7 +33,8 @@ namespace Bookshelf.Controllers
         public ActionResult<Book> Create(Book book)
         {
             _service.AddBook(book);
-            return CreatedAtAction("", book);
+
+            return new ActionResult<Book>(book);
         }
 
         [HttpPut("{id}")]

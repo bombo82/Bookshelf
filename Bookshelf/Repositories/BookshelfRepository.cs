@@ -8,9 +8,11 @@ namespace Bookshelf.Repositories
 {
     public class BookshelfRepository : IBookshelfRepository
     {
+        private List<Book> Books = new List<Book>();
+
         public void AddABook(Book bookToAdd)
         {
-            throw new NotImplementedException();
+            Books.Add(bookToAdd);
         }
     }
 }

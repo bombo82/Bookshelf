@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Bookshelf.Controllers;
 using Bookshelf.Model.Bookshelf.Models;
@@ -39,6 +40,15 @@ namespace Bookshelf.test.UnitTest
             
             Assert.That(repository.Books, Is.Not.Empty);
     
+        }
+
+        [Test]
+        public void TestIdBook()
+        {
+            Book book = new Book();
+            service.AddBook(book);
+
+            Assert.That(repository.Books.First().Id, Is.Not.Null);
         }
     }
 }
