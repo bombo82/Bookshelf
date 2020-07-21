@@ -20,7 +20,7 @@ namespace Bookshelf.AcceptanceTest
             Book book = new Book();
             ActionResult<Book> actionResult = controller.Create(book);
 
-            Assert.That(actionResult, Is.InstanceOf<IActionResult>());
+            Assert.That(actionResult, Is.InstanceOf<ActionResult<Book>>());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Bookshelf.Model.Bookshelf.Models;
+using Bookshelf.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,8 @@ namespace Bookshelf.Controllers
         [HttpPost]
         public ActionResult<Book> Create(Book book)
         {
-            throw new NotImplementedException();
+            BookshelfService.AddBook(book);
+            return CreatedAtAction("", book);
         }
 
         [HttpPut("{id}")]
