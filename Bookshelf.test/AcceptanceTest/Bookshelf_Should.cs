@@ -33,5 +33,18 @@ namespace Bookshelf.AcceptanceTest
             Assert.That(actionResult.Value.Author, Is.EqualTo("Tolkien"));
             Assert.That(actionResult.Value.Id, Is.Not.Null);
         }
+
+        [Test]
+        public void GetListOfBooks()
+        {
+            BookshelfController controller = new BookshelfController(service);
+            controller.Create(new Book("Extreme Programming Explained", "Beck"));
+            controller.Create(new Book("Clean Code", "Uncle Bob"));
+
+            var result = controller.Get();
+
+            Assert.That(result, Has.Count.EqualTo(2));
+
+        }
     }
 }

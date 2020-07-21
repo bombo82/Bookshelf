@@ -9,5 +9,7 @@ namespace Bookshelf.Repositories
     public interface IBookshelfRepository
     {
         void AddABook(Book bookToAdd);
+
+        List<Book> GetAllBooks();
     }
 }

@@ -19,5 +19,19 @@ namespace Bookshelf.test.UnitTest
         {
             Books.Add(bookToAdd);
         }
+
+        public List<Book> GetAllBooks()
+        {
+            List<Book> listOfBooks = new List<Book>();
+
+            Book bookOne = new Book();
+            listOfBooks.Add(bookOne);
+
+            Book bookTwo = new Book();
+            listOfBooks.Add(bookTwo);
+
+
+            return listOfBooks;
+        }
     }
 }

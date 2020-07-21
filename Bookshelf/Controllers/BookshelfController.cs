@@ -20,7 +20,9 @@ namespace Bookshelf.Controllers
         [HttpGet]
         public ActionResult<IList<Book>> Get()
         {
-            throw new NotImplementedException();
+            _service.GetBooks();
+
+            return null;
         }
 
         [HttpGet("{id}")]

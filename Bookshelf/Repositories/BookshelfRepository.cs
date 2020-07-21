@@ -14,5 +14,10 @@ namespace Bookshelf.Repositories
         {
             Books.Add(bookToAdd);
         }
+
+        public List<Book> GetAllBooks()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

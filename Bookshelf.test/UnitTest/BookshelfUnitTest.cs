@@ -22,15 +22,15 @@ namespace Bookshelf.test.UnitTest
             repository = new TestRepository();
             service = new BookshelfService(repository);
         }
-        
+
         [Test]
         public void Service_ShouldAddANewBook()
         {
             Book book = new Book();
             service.AddBook(book);
-            
+
             Assert.That(repository.Books, Is.Not.Empty);
-    
+
         }
 
         [Test]
@@ -49,6 +49,14 @@ namespace Bookshelf.test.UnitTest
             var result = service.AddBook(book);
 
             Assert.That(result, Is.TypeOf<Book>());
+        }
+
+        [Test]
+        public void TestListOfBooks() 
+        {
+            var result = service.GetBooks();
+
+            Assert.That(result, Has.Count.EqualTo(2));
         }
     }
 }

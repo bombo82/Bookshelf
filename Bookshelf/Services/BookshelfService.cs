@@ -22,5 +22,12 @@ namespace Bookshelf.Services
             _repository.AddABook(book);
             return book;
         }
+
+        public List<Book> GetBooks()
+        {
+            var result = _repository.GetAllBooks();
+
+            return result;
+        }
     }
 }
