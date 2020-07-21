@@ -10,6 +10,13 @@ namespace Bookshelf.Controllers
     [ApiController]
     public class BookshelfController : ControllerBase
     {
+        BookshelfService _service;
+
+        public BookshelfController(BookshelfService service)
+        {
+            _service = service;
+        }
+
         [HttpGet]
         public ActionResult<IList<Book>> Get()
         {
@@ -25,7 +32,7 @@ namespace Bookshelf.Controllers
         [HttpPost]
         public ActionResult<Book> Create(Book book)
         {
-            BookshelfService.AddBook(book);
+            _service.AddBook(book);
             return CreatedAtAction("", book);
         }
 
