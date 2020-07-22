@@ -23,11 +23,9 @@ namespace Bookshelf.Services
             return book;
         }
 
-        public List<Book> GetBooks()
+        public IList<Book> GetBooks()
         {
-            var result = _repository.GetAllBooks();
-
-            return result;
+            return _repository.GetAllBooks();
         }
     }
 }

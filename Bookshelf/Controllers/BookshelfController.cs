@@ -18,11 +18,10 @@ namespace Bookshelf.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IList<Book>> Get()
+        public ActionResult Get()
         {
-            _service.GetBooks();
-
-            return null;
+            IList<Book> books = _service.GetBooks();
+            return Ok(new { Values = books });
         }
 
         [HttpGet("{id}")]

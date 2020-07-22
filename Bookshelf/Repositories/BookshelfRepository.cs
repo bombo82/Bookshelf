@@ -1,8 +1,7 @@
 ﻿using Bookshelf.Model.Bookshelf.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Collections.Immutable;
 
 namespace Bookshelf.Repositories
 {
@@ -15,9 +14,9 @@ namespace Bookshelf.Repositories
             Books.Add(bookToAdd);
         }
 
-        public List<Book> GetAllBooks()
+        public IList<Book> GetAllBooks()
         {
-            throw new NotImplementedException();
+            return Books.ToImmutableList();
         }
     }
 }

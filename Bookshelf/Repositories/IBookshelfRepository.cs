@@ -10,6 +10,6 @@ namespace Bookshelf.Repositories
     {
         void AddABook(Book bookToAdd);
 
-        List<Book> GetAllBooks();
+        IList<Book> GetAllBooks();
     }
 }

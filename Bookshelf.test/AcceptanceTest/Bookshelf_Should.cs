@@ -4,7 +4,7 @@ using Bookshelf.Repositories;
 using Bookshelf.Services;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
-using System;
+using System.Collections.Generic;
 
 namespace Bookshelf.AcceptanceTest
 {
@@ -12,18 +12,19 @@ namespace Bookshelf.AcceptanceTest
     {
         private IBookshelfRepository repository;
         private BookshelfService service;
+        private BookshelfController controller;
 
         [SetUp]
         public void Setup()
         {
             repository = new BookshelfRepository();
             service = new BookshelfService(repository);
+            controller = new BookshelfController(service);
         }
 
         [Test]
         public void CreateABook()
         {
-            BookshelfController controller = new BookshelfController(service);
             Book book = new Book("Il signore degli anelli", "Tolkien");
             ActionResult<Book> actionResult = controller.Create(book);
 
@@ -37,14 +38,13 @@ namespace Bookshelf.AcceptanceTest
         [Test]
         public void GetListOfBooks()
         {
-            BookshelfController controller = new BookshelfController(service);
             controller.Create(new Book("Extreme Programming Explained", "Beck"));
             controller.Create(new Book("Clean Code", "Uncle Bob"));
 
-            var result = controller.Get();
+            OkObjectResult result = controller.Get() as OkObjectResult;
 
-            Assert.That(result, Has.Count.EqualTo(2));
-
+            var books = result.Value;
+            Assert.That(books, Is.Not.Null);
         }
     }
 }

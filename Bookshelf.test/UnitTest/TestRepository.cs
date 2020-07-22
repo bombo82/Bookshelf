@@ -1,8 +1,6 @@
 ﻿using Bookshelf.Model.Bookshelf.Models;
 using Bookshelf.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Bookshelf.test.UnitTest
 {
@@ -20,7 +18,7 @@ namespace Bookshelf.test.UnitTest
             Books.Add(bookToAdd);
         }
 
-        public List<Book> GetAllBooks()
+        public IList<Book> GetAllBooks()
         {
             List<Book> listOfBooks = new List<Book>();
 
