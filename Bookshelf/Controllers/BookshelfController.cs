@@ -12,9 +12,10 @@ namespace Bookshelf.Controllers
     {
         BookshelfService _service;
 
-        public BookshelfController(BookshelfService service)
+        public BookshelfController()
         {
-            _service = service;
+            _service = new BookshelfService(new Repositories.BookshelfRepository());
+ 
         }
 
         [HttpGet]
