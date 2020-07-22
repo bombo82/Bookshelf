@@ -12,10 +12,9 @@ namespace Bookshelf.Controllers
     {
         BookshelfService _service;
 
-        public BookshelfController()
+        public BookshelfController(BookshelfService service)
         {
-            _service = new BookshelfService(new Repositories.BookshelfRepository());
- 
+            _service = service;
         }
 
         [HttpGet]
@@ -29,11 +28,6 @@ namespace Bookshelf.Controllers
         public ActionResult Get(string id)
         {
             Book book = _service.GetBook(id);
-
-            if (book == null)
-            {
-                return new NotFoundResult();
-            }
             return Ok(book);
         }
 
