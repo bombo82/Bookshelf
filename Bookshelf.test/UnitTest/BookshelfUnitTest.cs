@@ -66,5 +66,16 @@ namespace Bookshelf.test.UnitTest
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Id, Is.EqualTo("1"));
         }
+
+        [Test]
+        public void BookAdded_ShouldHaveUniqueId()
+        {
+            Book bookToAdd = new Book();
+            Book bookToAdd2 = new Book();
+            Book addedBook = service.AddBook(bookToAdd);
+            Book addedBook2 = service.AddBook(bookToAdd2);
+
+            Assert.That(addedBook.Id, Is.Not.EqualTo(addedBook2.Id));
+        }
     }
 }

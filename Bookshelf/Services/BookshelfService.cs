@@ -10,6 +10,7 @@ namespace Bookshelf.Services
     public class BookshelfService
     {
         private IBookshelfRepository _repository;
+        private int lastId = 0;
 
         public BookshelfService(IBookshelfRepository repository)
         {
@@ -18,8 +19,9 @@ namespace Bookshelf.Services
 
         public Book AddBook(Book book) 
         {
-            book.Id = "1";
+            book.Id = lastId++.ToString();
             _repository.AddABook(book);
+            
             return book;
         }
 
