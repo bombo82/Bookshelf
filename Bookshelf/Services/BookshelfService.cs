@@ -27,5 +27,10 @@ namespace Bookshelf.Services
         {
             return _repository.GetAllBooks();
         }
+
+        public Book GetBook(string id)
+        {
+            return _repository.GetBookById(id);
+        }
     }
 }

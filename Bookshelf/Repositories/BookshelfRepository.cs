@@ -18,5 +18,10 @@ namespace Bookshelf.Repositories
         {
             return Books.ToImmutableList();
         }
+
+        public Book GetBookById(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

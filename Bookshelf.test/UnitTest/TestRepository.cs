@@ -31,5 +31,12 @@ namespace Bookshelf.test.UnitTest
 
             return listOfBooks;
         }
+
+        public Book GetBookById(string id)
+        {
+            Book bookOne = new Book();
+            bookOne.Id = id;
+            return bookOne;
+        }
     }
 }

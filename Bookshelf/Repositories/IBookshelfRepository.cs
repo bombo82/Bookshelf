@@ -11,5 +11,7 @@ namespace Bookshelf.Repositories
         void AddABook(Book bookToAdd);
 
         IList<Book> GetAllBooks();
+
+        Book GetBookById(string id);
     }
 }

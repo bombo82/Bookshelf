@@ -58,5 +58,13 @@ namespace Bookshelf.test.UnitTest
 
             Assert.That(result, Has.Count.EqualTo(2));
         }
+
+        [Test]
+        public void TestGetBook()
+        {
+            Book result = service.GetBook("1");
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Id, Is.EqualTo("1"));
+        }
     }
 }
