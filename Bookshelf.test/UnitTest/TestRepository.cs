@@ -34,6 +34,10 @@ namespace Bookshelf.test.UnitTest
 
         public Book GetBookById(string id)
         {
+            if (id == "5")
+            {
+                return null;
+            }
             Book bookOne = new Book();
             bookOne.Id = id;
             return bookOne;

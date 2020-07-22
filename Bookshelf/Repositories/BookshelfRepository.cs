@@ -22,7 +22,7 @@ namespace Bookshelf.Repositories
 
         public Book GetBookById(string id)
         {
-           return Books.Where(b => b.Id == id).First();
+            return Books.Where(b => b.Id == id).First();
         }
     }
 }

@@ -28,6 +28,11 @@ namespace Bookshelf.Controllers
         public ActionResult Get(string id)
         {
             Book book = _service.GetBook(id);
+
+            if (book == null)
+            {
+                return new NotFoundResult();
+            }
             return Ok(book);
         }
 

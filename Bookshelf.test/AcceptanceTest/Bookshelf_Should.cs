@@ -59,5 +59,17 @@ namespace Bookshelf.AcceptanceTest
             var book = result.Value;
             Assert.That(book, Is.Not.Null);
         }
+
+        [Test]
+        public void GetBookByIdWithNotFound()
+        {
+            controller.Create(new Book("Extreme Programming Explained", "Beck"));
+            controller.Create(new Book("Clean Code", "Uncle Bob"));
+
+
+
+            NotFoundResult result = controller.Get("5") as NotFoundResult;
+            Assert.That(result, Is.InstanceOf<NotFoundResult>());
+        }
     }
 }

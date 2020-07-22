@@ -32,7 +32,14 @@ namespace Bookshelf.Services
 
         public Book GetBook(string id)
         {
-            return _repository.GetBookById(id);
+            try
+            {
+                return _repository.GetBookById(id);
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
         }
     }
 }
