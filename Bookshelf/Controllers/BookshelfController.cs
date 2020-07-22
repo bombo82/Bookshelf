@@ -27,7 +27,8 @@ namespace Bookshelf.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(string id)
         {
-            throw new NotImplementedException();
+            Book book = _service.GetBook(id);
+            return Ok(book);
         }
 
         [HttpPost]

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 
 namespace Bookshelf.Repositories
 {
@@ -21,7 +22,7 @@ namespace Bookshelf.Repositories
 
         public Book GetBookById(string id)
         {
-            throw new NotImplementedException();
+           return Books.Where(b => b.Id == id).First();
         }
     }
 }
