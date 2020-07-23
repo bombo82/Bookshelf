@@ -53,8 +53,6 @@ namespace Bookshelf.AcceptanceTest
             controller.Create(new Book("Extreme Programming Explained", "Beck"));
             controller.Create(new Book("Clean Code", "Uncle Bob"));
 
-
-
             OkObjectResult result = controller.Get("1") as OkObjectResult;
             var book = result.Value;
             Assert.That(book, Is.Not.Null);
@@ -65,8 +63,6 @@ namespace Bookshelf.AcceptanceTest
         {
             controller.Create(new Book("Extreme Programming Explained", "Beck"));
             controller.Create(new Book("Clean Code", "Uncle Bob"));
-
-
 
             NotFoundResult result = controller.Get("5") as NotFoundResult;
             Assert.That(result, Is.InstanceOf<NotFoundResult>());
