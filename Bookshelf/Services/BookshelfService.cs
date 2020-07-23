@@ -41,5 +41,10 @@ namespace Bookshelf.Services
                 return null;
             }
         }
+
+        public Book DeleteBook(string id)
+        {
+            return _repository.DeleteABook(id);
+        }
     }
 }

@@ -53,7 +53,8 @@ namespace Bookshelf.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            throw new NotImplementedException();
+            Book bookToDelete = _service.DeleteBook(id);
+            return Ok(bookToDelete);
         }
     }
 }

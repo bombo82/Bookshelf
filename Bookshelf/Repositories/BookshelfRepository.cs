@@ -15,6 +15,14 @@ namespace Bookshelf.Repositories
             Books.Add(bookToAdd);
         }
 
+        public Book DeleteABook(string id)
+        {
+            Book bookToDelete = GetBookById(id);
+            Books.Remove(bookToDelete);
+
+            return bookToDelete;
+        }
+
         public IList<Book> GetAllBooks()
         {
             return Books.ToImmutableList();
