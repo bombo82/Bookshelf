@@ -78,5 +78,14 @@ namespace Bookshelf.AcceptanceTest
 
             Assert.That(result, Is.InstanceOf<OkObjectResult>());
         }
+
+        [Test]
+        public void DeleteShouldReturnNotFound()
+        {
+            controller.Create(new Book("Extreme Programming Explained", "Beck"));
+            controller.Create(new Book("Clean Code", "Uncle Bob"));
+            NotFoundResult result = controller.Delete("3") as NotFoundResult;
+            Assert.That(result, Is.InstanceOf<NotFoundResult>());
+        }
     }
 }
