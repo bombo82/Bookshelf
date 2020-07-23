@@ -6,18 +6,20 @@ namespace Bookshelf.test.UnitTest
 {
     public class TestRepository : IBookshelfRepository
     {
-        public readonly IList<Book> Books;
+        public readonly IList<string> logAddedIds;
 
         public TestRepository()
         {
-            Books = new List<Book>();
+            logAddedIds = new List<string>();
         }
 
+        // spy
         public void AddABook(Book bookToAdd)
         {
-            Books.Add(bookToAdd);
+            logAddedIds.Add(bookToAdd.Id);
         }
 
+        // dummy
         public IList<Book> GetAllBooks()
         {
             List<Book> listOfBooks = new List<Book>();
@@ -32,6 +34,7 @@ namespace Bookshelf.test.UnitTest
             return listOfBooks;
         }
 
+        // stub
         public Book GetBookById(string id)
         {
             if (id == "5")

@@ -29,7 +29,7 @@ namespace Bookshelf.test.UnitTest
             Book book = new Book();
             service.AddBook(book);
 
-            Assert.That(repository.Books, Is.Not.Empty);
+            Assert.That(repository.logAddedIds, Is.Not.Empty);
 
         }
 
@@ -39,7 +39,7 @@ namespace Bookshelf.test.UnitTest
             Book book = new Book();
             service.AddBook(book);
 
-            Assert.That(repository.Books.First().Id, Is.Not.Null);
+            Assert.That(repository.logAddedIds.First(), Is.Not.Null);
         }
 
         [Test]
