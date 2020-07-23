@@ -18,14 +18,32 @@ namespace Bookshelf.test.UnitTest
         }
 
         [Test]
-        public void Service_ShouldDelete_ABook()
+        public void Service_ShouldDelete_AnExistingBook()
         {
             Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
             BookshelfService service = new BookshelfService(repository.Object);
 
+            repository.Setup(repo => repo.GetBookById("1"))
+                .Returns(new Book());
+            
             service.DeleteBook("1");
 
             repository.Verify(repo => repo.DeleteABook(It.Is<string>(id => id.Equals("1"))));
+        }
+
+        [Test]
+        public void Service_ShouldDelete_NotCalledWhenTHeBookDoesNotExist()
+        {
+            Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
+            BookshelfService service = new BookshelfService(repository.Object);
+
+            Book nullBook = null;
+            repository.Setup(repo => repo.GetBookById("3"))
+                .Returns(nullBook);
+
+            service.DeleteBook("3");
+
+            repository.VerifyNoOtherCalls();
         }
 
         [Test]
