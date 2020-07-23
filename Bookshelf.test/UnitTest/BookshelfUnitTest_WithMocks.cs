@@ -37,12 +37,13 @@ namespace Bookshelf.test.UnitTest
             Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
             BookshelfService service = new BookshelfService(repository.Object);
 
-            Book nullBook = null;
+           
             repository.Setup(repo => repo.GetBookById("3"))
-                .Returns(nullBook);
+                .Throws(new InvalidOperationException());
+                
 
             service.DeleteBook("3");
-
+            repository.Verify(repo => repo.GetBookById(It.Is<string>(id => id.Equals("3"))));
             repository.VerifyNoOtherCalls();
         }
 
@@ -52,10 +53,11 @@ namespace Bookshelf.test.UnitTest
             Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
             BookshelfService service = new BookshelfService(repository.Object);
             Book expectedBook = new Book() { Id = "1" };
-            
+
             repository.Setup(repo =>
-            repo.DeleteABook("1"))
+            repo.GetBookById("1"))
                 .Returns(expectedBook);
+
 
             Book deletedBook = service.DeleteBook("1");
 

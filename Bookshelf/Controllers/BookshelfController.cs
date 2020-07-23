@@ -54,6 +54,7 @@ namespace Bookshelf.Controllers
         public IActionResult Delete(string id)
         {
             Book bookToDelete = _service.DeleteBook(id);
+            if (bookToDelete == null) return new NotFoundResult();
             return Ok(bookToDelete);
         }
     }

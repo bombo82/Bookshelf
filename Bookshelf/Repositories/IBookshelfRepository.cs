@@ -13,6 +13,6 @@ namespace Bookshelf.Repositories
         IList<Book> GetAllBooks();
 
         Book GetBookById(string id);
-        Book DeleteABook(string id);
+        void DeleteABook(string id);
     }
 }

@@ -19,7 +19,7 @@ namespace Bookshelf.test.UnitTest
             logAddedIds.Add(bookToAdd.Id);
         }
 
-        public Book DeleteABook(string id)
+        public void DeleteABook(string id)
         {
             throw new System.NotImplementedException();
         }

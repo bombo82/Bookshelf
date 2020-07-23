@@ -44,7 +44,20 @@ namespace Bookshelf.Services
 
         public Book DeleteBook(string id)
         {
-            return _repository.DeleteABook(id);
+
+            try
+            {
+                var book =_repository.GetBookById(id);
+                          _repository.DeleteABook(id);
+
+                return book;
+                
+            }
+            catch(InvalidOperationException)
+            {
+                return null;
+            }
+            
         }
     }
 }
