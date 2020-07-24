@@ -80,6 +80,19 @@ namespace Bookshelf.AcceptanceTest
         }
 
         [Test]
+        public void UpdateTest()
+        {
+            controller.Create(new Book("Extreme Programming Explained", "Beck"));
+            controller.Create(new Book("Clean Code", "Uncle Bob"));
+
+            Book newBook = new Book("Not Clean Code", "Robert C. Martin");
+
+            var result = controller.Update("1", newBook);
+
+            Assert.That(result, Is.InstanceOf<OkResult>());
+        }
+
+        [Test]
         public void DeleteShouldReturnNotFound()
         {
             controller.Create(new Book("Extreme Programming Explained", "Beck"));

@@ -48,6 +48,34 @@ namespace Bookshelf.test.UnitTest
         }
 
         [Test]
+        public void UpdateTest()
+        {
+            Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
+            BookshelfService service = new BookshelfService(repository.Object);
+
+            Book book = new Book("Titolo", "Autore");
+
+            service.UpdateBook("1", book);
+
+            repository.Verify(repo => repo.UpdateBook(It.Is<string>(id => id.Equals("1")), It.Is<Book>(book => book.Title.Equals("Titolo") && book.Author.Equals("Autore") && book.Id.Equals("1"))));
+        }
+
+        [Test]
+        public void UpdateBook_ShouldReturnUpdatedBook()
+        {
+            Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
+            BookshelfService service = new BookshelfService(repository.Object);
+
+            Book book = new Book("Titolo", "Autore");
+
+            var result = service.UpdateBook("1", book);
+
+            Assert.That(result, Is.EqualTo(book));
+        }
+
+
+
+        [Test]
         public void DeletedBook_ShouldReturnTheBook()
         {
             Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();

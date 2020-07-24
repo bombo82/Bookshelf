@@ -13,6 +13,9 @@ namespace Bookshelf.Repositories
         IList<Book> GetAllBooks();
 
         Book GetBookById(string id);
+
+        void UpdateBook(string id, Book newBook);
+
         void DeleteABook(string id);
     }
 }

@@ -45,9 +45,11 @@ namespace Bookshelf.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(string id, Book bookIn)
+        public IActionResult Update(string id, Book book)
         {
-            throw new NotImplementedException();
+            _service.UpdateBook(id, book);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]

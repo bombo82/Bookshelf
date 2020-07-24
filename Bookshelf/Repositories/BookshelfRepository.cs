@@ -32,5 +32,12 @@ namespace Bookshelf.Repositories
         {
             return Books.Where(b => b.Id == id).First();
         }
+
+        public void UpdateBook(string id, Book newBook)
+        {
+            Books.Remove(GetBookById(id));
+            
+            AddABook(newBook);
+        }
     }
 }

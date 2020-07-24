@@ -50,5 +50,10 @@ namespace Bookshelf.test.UnitTest
             bookOne.Id = id;
             return bookOne;
         }
+
+        public void UpdateBook(string id, Book newBook)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

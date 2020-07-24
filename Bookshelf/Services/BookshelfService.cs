@@ -42,6 +42,13 @@ namespace Bookshelf.Services
             }
         }
 
+        public Book UpdateBook(string id, Book book)
+        {
+            book.Id = id;
+            _repository.UpdateBook(id, book);
+            return book;
+        }
+
         public Book DeleteBook(string id)
         {
 
