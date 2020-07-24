@@ -47,9 +47,10 @@ namespace Bookshelf.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(string id, Book book)
         {
-            _service.UpdateBook(id, book);
-
-            return Ok();
+            if (_service.UpdateBook(id, book) != null)
+                return Ok();
+            else
+                return new NotFoundResult();
         }
 
         [HttpDelete("{id}")]

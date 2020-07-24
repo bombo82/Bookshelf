@@ -55,6 +55,9 @@ namespace Bookshelf.test.UnitTest
 
             Book book = new Book("Titolo", "Autore");
 
+            repository.Setup(repo => repo.GetBookById("1"))
+                .Returns(new Book());
+
             service.UpdateBook("1", book);
 
             repository.Verify(repo => repo.UpdateBook(It.Is<string>(id => id.Equals("1")), It.Is<Book>(book => book.Title.Equals("Titolo") && book.Author.Equals("Autore") && book.Id.Equals("1"))));
@@ -68,9 +71,46 @@ namespace Bookshelf.test.UnitTest
 
             Book book = new Book("Titolo", "Autore");
 
+            repository.Setup(repo => repo.GetBookById("1"))
+                .Returns(new Book());
+
             var result = service.UpdateBook("1", book);
 
             Assert.That(result, Is.EqualTo(book));
+        }
+
+        [Test]
+        public void UpdateBook_ShouldReturnNull_IfBookIsNotFound()
+        {
+            Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
+            BookshelfService service = new BookshelfService(repository.Object);
+
+            Book book = new Book("Titolo", "Autore");
+
+            repository.Setup(repo => repo.GetBookById("2"))
+               .Throws(new InvalidOperationException());
+
+            var result = service.UpdateBook("2", book);
+
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void UpdateBook_ShouldNotCallRepository_IfBookIsNotFound()
+        {
+            Mock<IBookshelfRepository> repository = new Mock<IBookshelfRepository>();
+            BookshelfService service = new BookshelfService(repository.Object);
+
+            Book book = new Book("Titolo", "Autore");
+
+            repository.Setup(repo => repo.GetBookById("2"))
+               .Throws(new InvalidOperationException());
+
+            service.UpdateBook("2", book);
+
+            repository.Verify(repo => repo.GetBookById(It.IsAny<string>()));
+            repository.VerifyNoOtherCalls();
+
         }
 
 

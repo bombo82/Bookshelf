@@ -93,6 +93,19 @@ namespace Bookshelf.AcceptanceTest
         }
 
         [Test]
+        public void Update_ShouldReturnNotFound()
+        {
+            controller.Create(new Book("Extreme Programming Explained", "Beck"));
+            controller.Create(new Book("Clean Code", "Uncle Bob"));
+
+            Book newBook = new Book("Not Clean Code", "Robert C. Martin");
+
+            NotFoundResult result = (NotFoundResult)controller.Update("2", newBook);
+
+            Assert.That(result, Is.InstanceOf<NotFoundResult>());
+        }
+
+        [Test]
         public void DeleteShouldReturnNotFound()
         {
             controller.Create(new Book("Extreme Programming Explained", "Beck"));
